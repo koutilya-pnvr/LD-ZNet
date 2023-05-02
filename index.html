@@ -1,0 +1,159 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"-->
+    <title>SharinGAN: Combining Synthetic and Real Data for Unsupervised Geometry Estimation</title>
+
+    <!-- CSS includes -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="mainpage.css" rel="stylesheet">
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</meta>
+<div id="header" class="container-fluid">
+    <div class="row" style="text-align:center;padding:0;margin:0">
+        <h1>SharinGAN: Combining Synthetic and Real Data for Unsupervised Geometry Estimation</h1>
+        <div class="authors">
+            <a style="font-size:20px" href="https://koutilya-pnvr.github.io" target="new">Koutilya PNVR</a>
+            &emsp;
+			&emsp;
+            <a style="font-size:20px" href="https://zhhoper.github.io/" target="new">Hao Zhou*</a>
+            &emsp;
+			&emsp;
+            <a style="font-size:20px" href="http://www.cs.umd.edu/~djacobs/" target="new">David Jacobs</a>
+            <br>
+            <span style="font-size:20px">University of Maryland College Park </span>
+            <div style="text-align:center;color:#A40;margin-bottom:10;font-size: 20px;">IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2020</div>
+   	  </div>
+
+  </div>
+</div>
+    <br>
+	<table align="center" width="900px">
+        <tbody><tr>
+            <td align="center" width="900px">
+                <center>
+                    <span style="font-size:22px"><a href="https://github.com/koutilya-pnvr/SharinGAN">Code</a></span>    
+                    <span style="font-size:22px"><a href="https://openaccess.thecvf.com/content_CVPR_2020/html/PNVR_SharinGAN_Combining_Synthetic_and_Real_Data_for_Unsupervised_Geometry_Estimation_CVPR_2020_paper.html">Paper [CVPR 2020] </a> </span>    
+                    <span style="font-size:22px"><a href="https://arxiv.org/abs/2006.04026">Paper [Arxiv] </a> </span>    
+                    <br>
+            </td>
+        </tr>
+    </tbody></table>
+	<br>
+	
+<div class="container">
+    <h2>Abstract</h2>
+We  propose  a  novel  method  for  combining  syntheticand real images when training networks to determine geometric  information  from  a  single  image. We  suggest a  method  for  mapping  both  image  types  into  a  single, shared  domain. This  is  connected  to  a  primary  network  for  end-to-end  training.   Ideally,  this  results  in  images  from  two  domains  that  present  shared  information to  the  primary  network. Our  experiments  demonstrate significant  improvements  over  the  state-of-the-art  in  two important  domains,  surface  normal  estimation  of  human faces and monocular depth estimation for outdoor scenes, both  in  an  unsupervised  setting. </div>
+
+<div>
+        <table align=center width="75%"><!--1000px-->
+            <tr>
+                <td width="75%"><!--600px-->
+                  <center>
+					  <h2>Idea</h2>
+                      <a href="./introduction_new.pdf" target="new"><img src = "./introduction_new.jpg" width="35%"></img></href></a><br><!--500px-->
+					</center>
+					
+                </td>
+            </tr>
+		
+			<tr>
+                <td width="75%"><!--600px-->
+                   <center> 
+                      <i>We propose to reduce the domain gap between synthetic  and  real  by  mapping  the  corresponding  domain specific information related to the primary task (δ<sub>s</sub> , δ<sub>r</sub>) into shared information δ<sub>sh</sub>, preserving everything else.</i><br><br>
+                 </center> 	
+                </td>
+            </tr>
+
+            <tr>
+                <td width="100%"><!--600px-->
+                  <center>
+					  <h2>Method</h2>
+                  		<a href="./SharinGAN_method.pdf" target = "new"><img src = "./SharinGAN_method.jpg" width="50%"></img></href></a><br><!--1000px-->
+                </center>
+                </td>
+            </tr>
+            </tr>
+                <td width="75%"><!--600px-->
+                   <center> 
+                      <i>Overview of the proposed architecture.</i>
+                 </center> 
+                </td>
+            </tr>
+        </table>
+</div>
+
+    
+<div class="container">
+        <h2>Bibtex citation</h2>
+<!--        <p><span style="font-size:20px"><a href="https://arxiv.org/abs/2006.04026" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size:24px; margin:10px;"></i>[Paper Arxiv]</a>, to appear in CVPR 2020</span></p>-->
+<pre class="citation">
+@InProceedings{PNVR_2020_CVPR,
+author = {PNVR, Koutilya and Zhou, Hao and Jacobs, David},
+title = {SharinGAN: Combining Synthetic and Real Data for Unsupervised Geometry Estimation},
+booktitle = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2020}
+}
+</pre>
+</div>
+
+
+
+<div class="container" >
+	<h1>Results</h1>
+	<center>
+		<h2>Qualitative results for Monocular Depth Estimation on KITTI</h2>
+    </center>
+    <div>
+         <center>
+			 <a href="./mde_results1.pdf" target = "new"><img src="./mde_results1.jpg" width="100%"></img></href></a><br><!--1000px-->
+          </center>
+            <span class="abstract">We show qualitative comparison with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a> on eigen test split of KITTI dataset. Notice that our method estimates better depth map and is relatively closer to the ground truth. The primary difference between our approach and GASDA is the presence of the SharinGAN module that presents a shared domain to the primary network. </span><br>        
+     </div>
+</div> 
+
+<div class="container" >
+    <center>
+		<h2>Generalization to Make3D dataset (unseen during training)</h2>
+    </center>
+	<div>
+         <center>
+			 <a href="./mde_make3d1.pdf" target = "new"><img src="./mde_make3d1.jpg" width="100%"></img></href></a><br><!--1000px-->
+          </center>
+            <span class="abstract">We also show the generalization of our approach to a completely unseen dataset, Make3D and compare it with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a>. We were able to capitalize on mapping to the shared domain that boosts the generalization performance of the primary network to unseen domains. </span><br>        
+     </div>
+</div> 
+
+<div class="container" >
+    <div>
+         <center>
+			 <h2>Qualitative results for Face Normal Estimation</h2>
+            <a href="./fne_results1.pdf" target = "new"><img src="./fne_results1.jpg" width="40%"></img></href></a><br><!--500px-->
+          </center>
+            <span class="abstract">We also show the efficacy of our approach for predicting face normals and we qualitatively compare it with <a href="https://senguptaumd.github.io/SfSNet/" target="new">SfsNet</a> on the testset of the Photoface dataset.</span>        
+     </div>
+</div>
+
+
+<div class="container" >
+  <h2>Contact</h2>
+  <div>
+  <a href="mailto:koutilya@terpmail.umd.edu">Koutilya PNVR</a>
+  </div>
+</div>
+<br><br><br>
+
+<div id="footer">
+</div>
+
+<!-- Javascript includes -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+</body></html>
