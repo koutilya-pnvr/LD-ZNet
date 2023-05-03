@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <!--meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"-->
-    <title>SharinGAN: Combining Synthetic and Real Data for Unsupervised Geometry Estimation</title>
+	<br>
+    <title>LD-ZNet: A Latent Diffusion Approach for Text-Based Image Segmentation</title>
 
     <!-- CSS includes -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -16,18 +17,32 @@
 	</meta>
 <div id="header" class="container-fluid">
     <div class="row" style="text-align:center;padding:0;margin:0">
-        <h1>SharinGAN: Combining Synthetic and Real Data for Unsupervised Geometry Estimation</h1>
+        <h1>LD-ZNet: A Latent Diffusion Approach for Text-Based Image Segmentation</h1>
         <div class="authors">
-            <a style="font-size:20px" href="https://koutilya-pnvr.github.io" target="new">Koutilya PNVR</a>
+            <p>
+			<a style="font-size:20px" href="https://koutilya-pnvr.github.io" target="new">Koutilya PNVR <sup>&dagger;</sup></a>
             &emsp;
 			&emsp;
-            <a style="font-size:20px" href="https://zhhoper.github.io/" target="new">Hao Zhou*</a>
+            <a style="font-size:20px" href="https://www.linkedin.com/in/bharat-singh-183b46164?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B4QaKeY5tTjqipgztSZ%2B33w%3D%3D" target="new">Bharat Singh <sup>&Dagger;</sup></a>
+			&emsp;
+			&emsp;
+            <a style="font-size:20px" href="https://pallabig.github.io/PallabiGhosh/" target="new">Pallabi Ghosh <sup>&sect;</sup></a>
+			&emsp;
+			&emsp;
+            <a style="font-size:20px" href="https://behjat.github.io/" target="new">Behjat Siddiquie<sup>&sect;</sup></a>
             &emsp;
 			&emsp;
-            <a style="font-size:20px" href="http://www.cs.umd.edu/~djacobs/" target="new">David Jacobs</a>
+            <a style="font-size:20px" href="http://www.cs.umd.edu/~djacobs/" target="new">David Jacobs <sup>&dagger;</sup></a>
             <br>
-            <span style="font-size:20px">University of Maryland College Park </span>
-            <div style="text-align:center;color:#A40;margin-bottom:10;font-size: 20px;">IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2020</div>
+            <span style="font-size:20px"><sup>&dagger;</sup> University of Maryland College Park </span> 
+			&emsp;
+			&emsp; 
+			<span style="font-size:20px"><sup>&Dagger;</sup> Vchar.ai </span>
+			&emsp;
+			&emsp; 
+			<span style="font-size:20px"><sup>&sect;</sup> Amazon Go </span>
+			</p>
+<!--            <div style="text-align:center;color:#A40;margin-bottom:10;font-size: 20px;">IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2020</div>-->
    	  </div>
 
   </div>
@@ -37,9 +52,9 @@
         <tbody><tr>
             <td align="center" width="900px">
                 <center>
-                    <span style="font-size:22px"><a href="https://github.com/koutilya-pnvr/SharinGAN">Code</a></span>    
-                    <span style="font-size:22px"><a href="https://openaccess.thecvf.com/content_CVPR_2020/html/PNVR_SharinGAN_Combining_Synthetic_and_Real_Data_for_Unsupervised_Geometry_Estimation_CVPR_2020_paper.html">Paper [CVPR 2020] </a> </span>    
-                    <span style="font-size:22px"><a href="https://arxiv.org/abs/2006.04026">Paper [Arxiv] </a> </span>    
+<!--                    <span style="font-size:22px"><a href="https://github.com/koutilya-pnvr/SharinGAN">Code</a></span>    -->
+<!--                    <span style="font-size:22px"><a href="https://openaccess.thecvf.com/content_CVPR_2020/html/PNVR_SharinGAN_Combining_Synthetic_and_Real_Data_for_Unsupervised_Geometry_Estimation_CVPR_2020_paper.html">Paper [CVPR 2020] </a> </span>    -->
+                    <span style="font-size:22px"><a href="https://arxiv.org/pdf/2303.12343.pdf">Paper [Arxiv] </a> </span>    
                     <br>
             </td>
         </tr>
@@ -48,98 +63,146 @@
 	
 <div class="container">
     <h2>Abstract</h2>
-We  propose  a  novel  method  for  combining  syntheticand real images when training networks to determine geometric  information  from  a  single  image. We  suggest a  method  for  mapping  both  image  types  into  a  single, shared  domain. This  is  connected  to  a  primary  network  for  end-to-end  training.   Ideally,  this  results  in  images  from  two  domains  that  present  shared  information to  the  primary  network. Our  experiments  demonstrate significant  improvements  over  the  state-of-the-art  in  two important  domains,  surface  normal  estimation  of  human faces and monocular depth estimation for outdoor scenes, both  in  an  unsupervised  setting. </div>
-
+We present a technique for segmenting real and AI-generated images using latent diffusion models (LDMs) trained on internet-scale datasets. First, we show that the latent space of LDMs (z-space) is a better input representation compared to other feature representations like RGB images or CLIP encodings for text-based image segmentation. By training the segmentation models on the latent z-space, which creates a compressed representation across several domains like different forms of art, cartoons, illustrations, and photographs, we are also able to bridge the domain gap between real and AI-generated images. We show that the internal features of LDMs contain rich semantic information and present a technique in the form of LD-ZNet to further boost the performance of text-based segmentation. Overall, we show up to 6% improvement over standard baselines for text-to-image segmentation on natural images. For AI-generated imagery, we show close to 20% improvement compared to state-of-the-art techniques.
+	
 <div>
-        <table align=center width="75%"><!--1000px-->
+	<center><h1>Text-Based Image Segmentation</h1></center>
+       <center>
+		   <table align=center width="100%"><!--1000px-->
             <tr>
-                <td width="75%"><!--600px-->
+                <td width="25%"><!--600px-->
                   <center>
-					  <h2>Idea</h2>
-                      <a href="./introduction_new.pdf" target="new"><img src = "./introduction_new.jpg" width="35%"></img></href></a><br><!--500px-->
-					</center>
-					
+					  <h2>AI Generated Images</h2>
+                      <a href="./assets/Results_AI.pdf" target="new"><img src = "./assets/Results_AI.png" width="90%"></img></href></a><br><!--500px-->
+				  </center>
+                </td>
+				<td width="25%"><!--600px-->
+					  <center>
+						  <h2>Real Images</h2>
+                      <a href="./assets/Results_Phrasecut.pdf" target="new"><img src = "./assets/Results_Phrasecut.png" width="100%"></img></href></a><br><br><br><!--500px-->
+						  <h2>Multi-Category Segmentation</h2>
+                      <a href="./assets/Results_Multi_segmentation.pdf" target="new"><img src = "./assets/Results_Multi_segmentation.png" width="100%"></img></href></a><br><br><br><!--500px-->
+					<a href="./assets/Results_Multi_segmentation2.pdf" target="new"><img src = "./assets/Results_Multi_segmentation2.png" width="100%"></img></href></a><br><!--500px-->
+				  </center>
                 </td>
             </tr>
-		
+         </table>
+</center>
+</div>
+
+<div>
+	<table align=center width="100%">
 			<tr>
                 <td width="75%"><!--600px-->
-                   <center> 
-                      <i>We propose to reduce the domain gap between synthetic  and  real  by  mapping  the  corresponding  domain specific information related to the primary task (δ<sub>s</sub> , δ<sub>r</sub>) into shared information δ<sub>sh</sub>, preserving everything else.</i><br><br>
-                 </center> 	
+                  <center>
+					  <br><br>
+					  <h1>Motivation</h1>
+					  <br>
+                      <a href="./assets/Motivation_new1.pdf" target="new"><img src = "./assets/Motivation_new1.png" width="50%"></img></href></a><br><!--500px-->		
+					<br>
+                      <i>Figure 1: Coarse segmentation results from an LDM for two distinct images, demonstrating the encoding of fine-grained object-level semantic information within the model’s internal features.</i><br><br>
+				  </center>
+					<p>Teaching networks to accurately find the boundaries of objects is hard and at the same time annotation of boundaries at internet scale is impractical. Also, most self-supervised or weakly supervised problems do not incentivize learning boundaries. For example, training on classification or captioning allows models to learn the most discriminative parts of the image without focusing on boundaries. Our insight is that Latent Diffusion Models (LDMs), which can be trained without object level supervision at internet scale, must attend to object boundaries, and so we hypothesize that they can learn features which would be useful for text-based image segmentation. <br><br>
+					
+					To test the aforementioned hypothesis about the presence of object-level semantic information inside a pretrained LDM, we conduct a simple experiment. We compute the pixel-wise norm between the unconditional and text-conditional noise estimates from a pretrained LDM as part of the reverse diffusion process. This computation identifies the spatial locations that need to be modified for the noised input to align better with the corresponding text condition. Hence, the magnitude of the pixel-wise norm depicts regions that identify the text prompt. As shown in the Figure 1, the pixel-wise norm represents a coarse segmentation of the subject although the LDM is not trained on this task. This clearly demonstrates that these large scale LDMs can not only generate visually pleasing images, but their internal representations encode fine-grained semantic information, that can be useful for tasks like segmentation. </p>
                 </td>
             </tr>
 
             <tr>
                 <td width="100%"><!--600px-->
                   <center>
-					  <h2>Method</h2>
-                  		<a href="./SharinGAN_method.pdf" target = "new"><img src = "./SharinGAN_method.jpg" width="50%"></img></href></a><br><!--1000px-->
+					  <h1>Method</h1>
+                  		<a href="./assets/LDZNet-Summary.pdf" target = "new"><img src = "./assets/LDZNet-Summary.png" width="100%"></img></href></a><br><!--1000px-->
+						<i>Figure 2: Overview of the proposed architecture.</i>
                 </center>
+				<p>
+					
+				</p>
                 </td>
             </tr>
-            </tr>
-                <td width="75%"><!--600px-->
-                   <center> 
-                      <i>Overview of the proposed architecture.</i>
-                 </center> 
-                </td>
-            </tr>
-        </table>
+  </table>
 </div>
 
-    
+
+
+<div class="container" >
+	
+	<center>
+		<br><h1><strong>AIGI</strong> (<strong>AI G</strong>enerated <strong>I</strong>mages) Dataset</h1><br>
+		<a href="./assets/AIGI_dataset.pdf" target = "new"><img src = "./assets/AIGI_dataset.png" width="100%"></img></href></a><br><!--1000px-->
+						<i>Figure 3: Examples from the AIGI dataset with annotations.</i>
+	</center>
+</div>
+
+<div class="container" >
+	
+	<center>
+		<br><h1>Results</h1><br>
+		<h2>Quantitave Results for Text-Based Segmentation</h2>
+  </center>
+    <div>
+			 <table align=center width="100%"><!--1000px-->
+            	<tr>
+					<td width="50%"><!--600px-->
+					  <center>
+						  <h3>Phrasecut test dataset</h3>
+						<a><img src="./assets/Quantitative_Real.png" width="90%"></img></a><!--1000px-->
+					 </center>
+				  </td>
+			 
+					<td width="50%">
+					<center>
+						<h3>AIGI dataset</h3>
+						<a><img src="./assets/Quantitative_AIGI.png" width="75%"></img></a><!--1000px-->
+					</center>
+					</td>
+				</tr>
+			</table>
+            <span class="abstract">We show qualitative comparison with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a> on eigen test split of KITTI dataset. Notice that our method estimates better depth map and is relatively closer to the ground truth. The primary difference between our approach and GASDA is the presence of the SharinGAN module that presents a shared domain to the primary network. </span><br>        
+  </div>
+</div> 
+
+<div class="container" >
+	
+  <center>
+		<h2>More Qualitative Results of LD-ZNet</h2>
+		<table align=center width="100%"><!--1000px-->
+            	<tr>
+				  <td width="50%"><!--600px-->
+					  <center>
+						  <h3>Online Real Images</h3>
+						<a><img src="./assets/Results_use_of_LDM_features.png" width="75%"></img></a>
+					 </center>
+					 </td>
+			 
+				  <td width="50%">
+					<center>
+						<h3>AIGI dataset</h3>
+						<a href="./assets/Results_AI2.pdf" target = "new"><img src = "./assets/Results_AI2.png" width="100%"></img></href></a><br>
+					</center>
+					</td>
+				</tr>
+	</table>
+	<br>
+  </center>
+	<span class="abstract">We show qualitative comparison with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a> on eigen test split of KITTI dataset. Notice that our method estimates better depth map and is relatively closer to the ground truth. The primary difference between our approach and GASDA is the presence of the SharinGAN module that presents a shared domain to the primary network. </span><br>        
+
+</div> 
+
 <div class="container">
         <h2>Bibtex citation</h2>
 <!--        <p><span style="font-size:20px"><a href="https://arxiv.org/abs/2006.04026" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size:24px; margin:10px;"></i>[Paper Arxiv]</a>, to appear in CVPR 2020</span></p>-->
 <pre class="citation">
-@InProceedings{PNVR_2020_CVPR,
-author = {PNVR, Koutilya and Zhou, Hao and Jacobs, David},
-title = {SharinGAN: Combining Synthetic and Real Data for Unsupervised Geometry Estimation},
-booktitle = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-month = {June},
-year = {2020}
+@misc{pnvr2023ldznet,
+      title={LD-ZNet: A Latent Diffusion Approach for Text-Based Image Segmentation}, 
+      author={Koutilya Pnvr and Bharat Singh and Pallabi Ghosh and Behjat Siddiquie and David Jacobs},
+      year={2023},
+      eprint={2303.12343},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 </pre>
 </div>
-
-
-
-<div class="container" >
-	<h1>Results</h1>
-	<center>
-		<h2>Qualitative results for Monocular Depth Estimation on KITTI</h2>
-    </center>
-    <div>
-         <center>
-			 <a href="./mde_results1.pdf" target = "new"><img src="./mde_results1.jpg" width="100%"></img></href></a><br><!--1000px-->
-          </center>
-            <span class="abstract">We show qualitative comparison with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a> on eigen test split of KITTI dataset. Notice that our method estimates better depth map and is relatively closer to the ground truth. The primary difference between our approach and GASDA is the presence of the SharinGAN module that presents a shared domain to the primary network. </span><br>        
-     </div>
-</div> 
-
-<div class="container" >
-    <center>
-		<h2>Generalization to Make3D dataset (unseen during training)</h2>
-    </center>
-	<div>
-         <center>
-			 <a href="./mde_make3d1.pdf" target = "new"><img src="./mde_make3d1.jpg" width="100%"></img></href></a><br><!--1000px-->
-          </center>
-            <span class="abstract">We also show the generalization of our approach to a completely unseen dataset, Make3D and compare it with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a>. We were able to capitalize on mapping to the shared domain that boosts the generalization performance of the primary network to unseen domains. </span><br>        
-     </div>
-</div> 
-
-<div class="container" >
-    <div>
-         <center>
-			 <h2>Qualitative results for Face Normal Estimation</h2>
-            <a href="./fne_results1.pdf" target = "new"><img src="./fne_results1.jpg" width="40%"></img></href></a><br><!--500px-->
-          </center>
-            <span class="abstract">We also show the efficacy of our approach for predicting face normals and we qualitatively compare it with <a href="https://senguptaumd.github.io/SfSNet/" target="new">SfsNet</a> on the testset of the Photoface dataset.</span>        
-     </div>
-</div>
-
 
 <div class="container" >
   <h2>Contact</h2>
