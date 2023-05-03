@@ -54,7 +54,7 @@
                 <center>
 <!--                    <span style="font-size:22px"><a href="https://github.com/koutilya-pnvr/SharinGAN">Code</a></span>    -->
 <!--                    <span style="font-size:22px"><a href="https://openaccess.thecvf.com/content_CVPR_2020/html/PNVR_SharinGAN_Combining_Synthetic_and_Real_Data_for_Unsupervised_Geometry_Estimation_CVPR_2020_paper.html">Paper [CVPR 2020] </a> </span>    -->
-                    <span style="font-size:22px"><a href="https://arxiv.org/pdf/2303.12343.pdf">Paper [Arxiv] </a> </span>    
+                    <span style="font-size:22px"><a href="https://arxiv.org/abs/2303.12343">Paper [Arxiv] </a> </span>    
                     <br>
             </td>
         </tr>
@@ -132,6 +132,8 @@ We present a technique for segmenting real and AI-generated images using latent 
 		<a href="./assets/AIGI_dataset.pdf" target = "new"><img src = "./assets/AIGI_dataset.png" width="100%"></img></href></a><br><!--1000px-->
 						<i>Figure 3: Examples from the AIGI dataset with annotations.</i>
 	</center>
+<br>
+	<p>We create a dataset consisting of AI-generated images which we name <strong>AIGI</strong> dataset, to showcase the usefulness of our approach for text-based segmentation on a different domain. We use 100 AI-generated images from <a href="https://lexica.art/">lexica.art</a> and manually annotated multiple regions for 214 text-prompts relevant to these images, as shown in Figure 3 above.</p>
 </div>
 
 <div class="container" >
@@ -147,6 +149,8 @@ We present a technique for segmenting real and AI-generated images using latent 
 					  <center>
 						  <h3>Phrasecut test dataset</h3>
 						<a><img src="./assets/Quantitative_Real.png" width="90%"></img></a><!--1000px-->
+						<br>
+						<i> Table 1: Text-based image segmentation performance on the PhraseCut testset. The performance of ZNet and LD-ZNet is highlighted in gray. Both these models outperform the baseline RGBNet on all the metrics.</i>
 					 </center>
 				  </td>
 			 
@@ -154,11 +158,14 @@ We present a technique for segmenting real and AI-generated images using latent 
 					<center>
 						<h3>AIGI dataset</h3>
 						<a><img src="./assets/Quantitative_AIGI.png" width="75%"></img></a><!--1000px-->
+						<br>
+						<i>Table 2: Generalization of the proposed LD-ZNet on our AIGI dataset when compared with other state-of-the-art text-based segmentation methods.</i>
 					</center>
 					</td>
 				</tr>
 			</table>
-            <span class="abstract">We show qualitative comparison with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a> on eigen test split of KITTI dataset. Notice that our method estimates better depth map and is relatively closer to the ground truth. The primary difference between our approach and GASDA is the presence of the SharinGAN module that presents a shared domain to the primary network. </span><br>        
+			<br>
+            <span class="abstract"></span><br>        
   </div>
 </div> 
 
@@ -172,6 +179,8 @@ We present a technique for segmenting real and AI-generated images using latent 
 					  <center>
 						  <h3>Online Real Images</h3>
 						<a><img src="./assets/Results_use_of_LDM_features.png" width="75%"></img></a>
+					  <br>
+					  <i>Figure 4: More qualitative examples where RGBNet fails to localize {``Guitar", ``Panda"} from animation images (top two rows), famous celebrities {``Scarlett Johansson", ``Kate Middleton"} (middle two rows) and objects such as {``Lamp", ``Trees"} from illustrations (bottom two rows). LD-ZNet benefits from using z combined with the internal LDM features to correctly segment these text prompts.</i>
 					 </center>
 					 </td>
 			 
@@ -179,13 +188,15 @@ We present a technique for segmenting real and AI-generated images using latent 
 					<center>
 						<h3>AIGI dataset</h3>
 						<a href="./assets/Results_AI2.pdf" target = "new"><img src = "./assets/Results_AI2.png" width="100%"></img></href></a><br>
+					<br>
+					<i>Figure 5: More qualitative results of LD-ZNet from AIGI dataset.</i>
 					</center>
 					</td>
 				</tr>
 	</table>
 	<br>
   </center>
-	<span class="abstract">We show qualitative comparison with <a href="https://github.com/sshan-zhao/GASDA" target="new">GASDA</a> on eigen test split of KITTI dataset. Notice that our method estimates better depth map and is relatively closer to the ground truth. The primary difference between our approach and GASDA is the presence of the SharinGAN module that presents a shared domain to the primary network. </span><br>        
+	<span class="abstract">We show that LD-ZNet works remarkably well on other domains like cartoons/illustrations. Figure 4 demonstrates some specific cases where RGBNet fails to segment or poorly segments the object being referred to, where as LD-ZNet segments the objects better. Figure 5 depicts LD-ZNet can perform accurate segmentation for text prompts which include cartoons (Pikachu, Godzilla), celebrities (Donald Trump, Spiderman), famous landmarks (Eiffel Tower).</span><br>        
 
 </div> 
 
