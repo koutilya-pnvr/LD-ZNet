@@ -1,0 +1,30 @@
+name: ldznet
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.10.8
+  - pip
+  - numpy
+  - pip:
+    - --extra-index-url https://download.pytorch.org/whl/cu116
+    - torch***REMOVED***1.13.1+cu116
+    - torchvision***REMOVED***0.14.1+cu116
+    - torchaudio***REMOVED***0.13.1
+    - albumentations***REMOVED***1.3.0
+    - diffusers
+    - matplotlib
+    - opencv-python***REMOVED***4.7.0.68
+    - invisible-watermark
+    - imageio***REMOVED***2.23.0
+    - pytorch-lightning***REMOVED***1.9.4
+    - omegaconf***REMOVED***2.2.3
+    - einops***REMOVED***0.3.0
+    - torch-fidelity***REMOVED***0.3.0
+    - transformers***REMOVED***4.25.1
+    - torchmetrics***REMOVED***0.11.1
+    - kornia***REMOVED***0.6.7
+    - -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
+    - -e git+https://github.com/openai/CLIP.git@main#egg=clip
+    - -e .
