@@ -139,9 +139,9 @@ class Script(scripts.Script):
 
 		def get_mask():
 			# load model
-			config_file = 'extensions/LDZNet_txt2mask/repositories/LDZNet/configs/zseg/phrasecut.yaml'
+			config_file = 'extensions/LD-ZNet/configs/ldznet/phrasecut.yaml'
 			config = OmegaConf.load(f"{config_file}")
-			model = load_model_from_config(config=config, ckpt='extensions/LDZNet_txt2mask/repositories/LDZNet/checkpoints/LDZNet_txt2mask.ckpt')
+			model = load_model_from_config(config=config, ckpt='extensions/LD-ZNet/checkpoints/LDZNet_txt2mask.ckpt')
 
 			# model.eval();
 			# model_dir = "./repositories/clipseg/weights"
