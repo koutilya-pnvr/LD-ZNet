@@ -14,6 +14,7 @@ from PIL import ImageChops, Image, ImageOps
 from torchvision import transforms
 from matplotlib import pyplot as plt
 import numpy
+from collections import OrderedDict
 
 from ldm_seg.util import instantiate_from_config
 from omegaconf import OmegaConf
@@ -25,6 +26,8 @@ import PIL
 debug = False
 
 class Script(scripts.Script):
+	model_cache = OrderedDict()
+
 	def title(self):
 		return "LD-ZNet txt2mask"
 
@@ -36,7 +39,7 @@ class Script(scripts.Script):
 			return None
 
 		mask_prompt = gr.Textbox(label="Mask prompt", lines=1)
-		negative_mask_prompt = gr.Textbox(label="Negative mask prompt", lines=1)
+		# negative_mask_prompt = gr.Textbox(label="Negative mask prompt", lines=1)
 		mask_precision = gr.Slider(label="Mask precision", minimum=0.0, maximum=255.0, step=1.0, value=100.0)
 		mask_padding = gr.Slider(label="Mask padding", minimum=0.0, maximum=500.0, step=1.0, value=0.0)
 		brush_mask_mode = gr.Radio(label="Brush mask mode", choices=['discard','add','subtract'], value='discard', type="index", visible=False)
@@ -44,9 +47,11 @@ class Script(scripts.Script):
 
 		plug = gr.HTML(label="plug",value='<div class="gr-block gr-box relative w-full overflow-hidden border-solid border border-gray-200 gr-panel"><p>If you like my work, please consider showing your support on <strong><a href="https://patreon.com/thereforegames" target="_blank">Patreon</a></strong>. Thank you! &#10084;</p></div>')
 
-		return [mask_prompt,negative_mask_prompt, mask_precision, mask_padding, brush_mask_mode, mask_output, plug]
+		# return [mask_prompt,negative_mask_prompt, mask_precision, mask_padding, brush_mask_mode, mask_output, plug]
+		return [mask_prompt, mask_precision, mask_padding, brush_mask_mode, mask_output, plug]
 
-	def run(self, p, mask_prompt, negative_mask_prompt, mask_precision, mask_padding, brush_mask_mode, mask_output, plug):
+	# def run(self, p, mask_prompt, negative_mask_prompt, mask_precision, mask_padding, brush_mask_mode, mask_output, plug):
+	def run(self, p, mask_prompt, mask_precision, mask_padding, brush_mask_mode, mask_output, plug):
 		def download_file(filename, url):
 			with open(filename, 'wb') as fout:
 				response = requests.get(url, stream=True)
@@ -105,9 +110,17 @@ class Script(scripts.Script):
 			return(final_img)
 
 		def load_model_from_config(config, ckpt, verbose=False):
+			model_name = config.model.target
+			config.model.params.sd_features_stage_config.params.path = config.model.params.sd_features_stage_config.params.path.replace('..', 'extensions/LD-ZNet')
+			config.model.params.sd_features_stage_config.params.config = config.model.params.sd_features_stage_config.params.config.replace('..', 'extensions/LD-ZNet')
+			if model_name in Script.model_cache:
+				print(f"Loading model from cache: {model_name}")
+				return Script.model_cache[model_name]
+			
 			model = instantiate_from_config(config.model)
 
 			# Load first and second stages of SD v1.4 and CLIP text model
+
 			ldm_weights = torch.load(config.model.params.sd_features_stage_config.params.path, map_location="cpu")["state_dict"]
 			
 			ldm_weights_keys_updated = {}
@@ -135,13 +148,10 @@ class Script(scripts.Script):
 
 			model.cuda()
 			model.eval()
+			Script.model_cache[model_name] = model
 			return model
 
 		def get_mask():
-			# load model
-			config_file = 'extensions/LD-ZNet/configs/ldznet/phrasecut.yaml'
-			config = OmegaConf.load(f"{config_file}")
-			model = load_model_from_config(config=config, ckpt='extensions/LD-ZNet/checkpoints/LDZNet_txt2mask.ckpt')
 
 			# model.eval();
 			# model_dir = "./repositories/clipseg/weights"
@@ -186,12 +196,12 @@ class Script(scripts.Script):
 
 			prompts = mask_prompt.split(delimiter_string)
 			prompt_parts = len(prompts)
-			negative_prompts = negative_mask_prompt.split(delimiter_string)
-			negative_prompt_parts = len(negative_prompts)
+			# negative_prompts = negative_mask_prompt.split(delimiter_string)
+			# negative_prompt_parts = len(negative_prompts)
 
 			init_image = repeat(init_image, '1 ... -> b ...', b=1)
 			init_latent = model.get_first_stage_encoding(model.encode_first_stage(init_image))
-			init_image_arr = (255*(1+init_image[0])/2).cpu().permute(1,2,0).numpy().astype(np.uint8)[:,:,::-1]
+			# init_image_arr = (255*(1+init_image[0])/2).cpu().permute(1,2,0).numpy().astype(np.uint8)[:,:,::-1]
 			t = torch.randint(0, 1, (init_image.shape[0],)).cuda().long() # t should always be 0 for this experiment
 
 			# predict
@@ -202,14 +212,14 @@ class Script(scripts.Script):
 
 					# img_c =model.get_learned_img_conditioning(init_image)
 					sd_features = model.encode_sd_features_stage(init_latent, c)#, timestep=400)
-					preds = model.apply_model(init_latent, t, c, sd_features)
+					preds = model.apply_model(init_latent, t, c, sd_features).cpu()
 
-
-					negative_prompts = model.sample_prompts(negative_prompts)
-					negative_c = model.get_learned_conditioning(negative_prompts)
-					negative_preds = model.apply_model(init_latent, t, negative_c, sd_features)
-					# preds = model(img.repeat(prompt_parts,1,1,1), prompts)[0]
-					# negative_preds = model(img.repeat(negative_prompt_parts,1,1,1), negative_prompts)[0]
+					# negative_prompts = model.sample_prompts(negative_prompts)
+					# print(negative_prompts)
+					# negative_c = model.get_learned_conditioning(negative_prompts)
+					# negative_preds = model.apply_model(init_latent, t, negative_c, sd_features)
+					# # preds = model(img.repeat(prompt_parts,1,1,1), prompts)[0]
+					# # negative_preds = model(img.repeat(negative_prompt_parts,1,1,1), negative_prompts)[0]
 
 			#tests
 			if (debug):
@@ -230,7 +240,7 @@ class Script(scripts.Script):
 				p.image_mask = ImageOps.invert(p.image_mask)
 				p.image_mask = p.image_mask.convert("RGBA")
 				final_img = overlay_mask_part(final_img,p.image_mask,0)
-			if (negative_mask_prompt): final_img = process_mask_parts(negative_preds,negative_prompt_parts,0,final_img)
+			# if (negative_mask_prompt): final_img = process_mask_parts(negative_preds,negative_prompt_parts,0,final_img)
 
 			# Increase mask size with padding
 			if (mask_padding > 0):
@@ -242,6 +252,10 @@ class Script(scripts.Script):
 		
 			return (final_img)
 						
+		# load model
+		config_file = 'extensions/LD-ZNet/configs/ldznet/phrasecut.yaml'
+		config = OmegaConf.load(f"{config_file}")
+		model = load_model_from_config(config=config, ckpt='extensions/LD-ZNet/checkpoints/LDZNet_txt2mask.ckpt')
 
 		# Set up processor parameters correctly
 		p.mode = 1
