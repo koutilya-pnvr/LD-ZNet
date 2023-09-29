@@ -1,4 +1,4 @@
-# LD-ZNet
+# LD-ZNet: A Latent Diffusion Approach for Text-Based Segmentation
 This is the official repository for the project titled "LD-ZNet: A Latent Diffusion Approach for Text-Based Segmentation". The website for this project is https://koutilya-pnvr.github.io/LD-ZNet/.
 
 ## :book: Abstract
