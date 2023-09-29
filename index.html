@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nerfies: Deformable Neural Radiance Fields</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!--
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+-->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">LD-ZNet: A Latent Diffusion Approach for Text-Based Image Segmentation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://koutilya-pnvr.github.io">Koutilya PNVR</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/bharat-singh-183b46164?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B4QaKeY5tTjqipgztSZ%2B33w%3D%3D">Bharat Singh</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://pallabig.github.io/PallabiGhosh/">Pallabi Ghosh</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://behjat.github.io/">Behjat Siddiquie</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.cs.umd.edu/~djacobs/">David Jacobs</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Marylad College Park,</span>
+            <span class="author-block"><sup>2</sup>Cruise LLC,</span>
+			  <span class="author-block"><sup>2</sup>Amazon,</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/PNVR_LD-ZNet_A_Latent_Diffusion_Approach_for_Text-Based_Image_Segmentation_ICCV_2023_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+			  <span class="link-block">
+                <a href="./assets/12703_poster.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2303.12343"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/ZDxOTW21ayQ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/koutilya-pnvr/LD-ZNet"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+              </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/drive/folders/1oZDJu5Y7nqN23Fcb6kCvXy1Do69l_YkQ?usp=sharing"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>AIGI Dataset</span>
+              </a>
+			  </span>
+			  
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+<!--
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+-->	
+			<img src="./assets/Intro.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="100%" height="auto"/>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">LD-ZNet</span> segments various objects from internet on real and AI-generated images.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present a technique for segmenting real and AI-generated images using latent diffusion models (LDMs) trained on internet-scale datasets. First, we show that the latent space of LDMs (z-space) is a better input representation compared to other feature representations like RGB images or CLIP encodings for text-based image segmentation. By training the segmentation models on the latent z-space, which creates a compressed representation across several domains like different forms of art, cartoons, illustrations, and photographs, we are also able to bridge the domain gap between real and AI-generated images. We show that the internal features of LDMs contain rich semantic information and present a technique in the form of LD-ZNet to further boost the performance of text-based segmentation. Overall, we show up to 6% improvement over standard baselines for text-to-image segmentation on natural images. For AI-generated imagery, we show close to 20% improvement compared to state-of-the-art techniques.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://youtu.be/ZDxOTW21ayQ"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Text-Based Segmentation</h2>
+		<div class="content has-text-justified">
+          <p>
+            Teaching networks to accurately find the boundaries of objects is hard and at the same time annotation of boundaries at internet scale is impractical. Also, most self-supervised or weakly supervised problems do not incentivize learning boundaries. For example, training on classification or captioning allows models to learn the most discriminative parts of the image without focusing on boundaries. Our insight is that Latent Diffusion Models (LDMs), which can be trained without object level supervision at internet scale, must attend to object boundaries, and so we hypothesize that they can learn features which would be useful for text-based image segmentation.
+          </p>
+        </div>
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Object-level semantics inside LDM</h3>
+        <div class="content has-text-justified">
+          <p>
+            To test the aforementioned hypothesis about the presence of object-level semantic information inside a pretrained LDM, we conduct a simple experiment. We compute the pixel-wise norm between the unconditional and text-conditional noise estimates from a pretrained LDM as part of the reverse diffusion process. This computation identifies the spatial locations that need to be modified for the noised input to align better with the corresponding text condition. Hence, the magnitude of the pixel-wise norm depicts regions that identify the text prompt. As shown in the Figure 1, the pixel-wise norm represents a coarse segmentation of the subject although the LDM is not trained on this task. This clearly demonstrates that these large scale LDMs can not only generate visually pleasing images, but their internal representations encode fine-grained semantic information, that can be useful for tasks like segmentation.
+          </p>
+        </div>
+		<div class="content has-text-centered">
+		<figure class="is-centered">
+			<img src="./assets/Motivation_new1.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="50%" height="auto"/>
+			<figcaption>Coarse segmentation results from an LDM for two distinct images, demonstrating the encoding of fine-grained object-level semantic information within the model’s internal features.</figcaption>
+		</figure>
+    	</div>
+		<br>
+		<h3 class="title is-4">Method</h3>
+		<div class="content has-text-centered">
+		<figure class="is-centered">
+			<img src="./assets/LDZNet-Summary.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="100%" height="auto"/>
+			<figcaption>Overview of the proposed architecture</figcaption>
+		</figure>
+    	</div>
+		<br>
+		<h2 class="title is-3">Results</h2>
+		<h3 class="title is-4">Phrasecut Dataset</h3>
+		<div class="content has-text-justified">
+          <p> When tested on the Phrasecut dataset, we see a gradual improvement going from RGBNet->ZNet->LD-ZNet indicating the importance of both z-space of image as well as the amount of semantic information stored in the internal representations of the LDM. It can also be observed from the visual comparison on the right that LD-ZNet does well in segmenting the "hanging clock" and the "castle" better than RGBNet and ZNet. </p>
+		 </div>
+		 <div class="columns is-centered">
+
+		  <!-- Visual Effects. -->
+		  <div class="column">
+			<div class="content">
+<!--			  <h2 class="title is-3">Visual Effects</h2>-->
+			  <img src="./assets/Results_Phrasecut.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="100%" height="auto"/>
+			</div>
+		  </div>
+		  <!--/ Visual Effects. -->
+
+		  <!-- Matting. -->
+		  <div class="column">
+<!--			<h2 class="title is-3">Matting</h2>-->
+			<div class="columns is-centered">
+			  <div class="column content has-text-centered">
+				<img src="./assets/Quantitative_Real.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="70%" height="auto"/>
+			  </div>
+
+			</div>
+		  </div>
+		</div>
+		<br>
+
+		<h3 class="title is-4">AI-Generated Images (AIGI) Dataset</h3>
+		<div class="content has-text-justified">
+          <p> Next, we were mainly focused on understanding the generalization of text-based segmentation methods on AI-images because of the traction the AI-generated content gained in the past couple of years. Moreover several editing workflows such as inpainting requires precise segmentation of objects in the image. Thus it becomes important to understand the generalization ability of the computer vision systems to AI-content. Hence we create an AI-generated dataset named AIGI that contains 100 AI-generated images gathered from lexica.art website and 214 object instances labeled along with their categorical captions as shown below. We also make this dataset public for future research in this direction</p>
+        </div>
+		<div class="content has-text-centered">
+		<figure class="is-centered">
+			<img src="./assets/AIGI_dataset.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="90%" height="auto"/>
+			<figcaption>Examples from the AIGI dataset with annotations.</figcaption>
+		</figure>
+    	</div>
+		<br>
+		<div class="columns is-centered">
+
+		  <!-- Visual Effects. -->
+		  <div class="column">
+			<div class="content has-text-centered">
+			  <h2 class="title is-3">Results on AIGI</h2>
+			  <img src="./assets/Results_AI.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="100%" height="auto"/>
+			</div>
+		  </div>
+		  <!--/ Visual Effects. -->
+
+		  <!-- Matting. -->
+		  <div class="column">
+<!--			<h2 class="title is-3">Matting</h2>-->
+			<div class="columns is-centered">
+			  <div class="column content has-text-centered">
+				<img src="./assets/Quantitative_AIGI.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="70%" height="auto"/>
+			 
+			 <h3 class="title is-4">Multi-object Segmentation</h3>
+				 <img src="./assets/Results_Multi_segmentation.png"
+					 class="center"
+					 alt="LD-ZNet can segment various objects on real and AI-generated images"
+				 width="100%" height="auto"/>
+				 <br><br><br>
+			 	<img src="./assets/Results_Multi_segmentation2.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="100%" height="auto"/>
+			  </div>
+
+			</div>
+		  </div>
+		</div>
+		<br>
+		
+		<h2 class="title is-3">More qualitative results of LD-ZNet</h2>
+		
+		<div class="columns is-centered">
+
+		  <!-- Visual Effects. -->
+		  <div class="column">
+			<div class="content">
+<!--			  <h2 class="title is-3">More qualitative results of LD-ZNet</h2>-->
+			  <img src="./assets/Results_use_of_LDM_features.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="100%" height="auto"/>
+			 <p>More qualitative examples where RGBNet fails to localize {``Guitar", ``Panda"} from animation images (top two rows), famous celebrities {``Scarlett Johansson", ``Kate Middleton"} (middle two rows) and objects such as {``Lamp", ``Trees"} from illustrations (bottom two rows). LD-ZNet benefits from using z combined with the internal LDM features to correctly segment these text prompts.</p>
+			 </figure>
+			</div>
+		  </div>
+		  <!--/ Visual Effects. -->
+
+		  <!-- Matting. -->
+		  <div class="column">
+<!--			<h2 class="title is-3">Matting</h2>-->
+			<div class="columns is-centered">
+			  <div class="column content has-text-centered">
+			  <br><br><br><br><br>
+				<img src="./assets/Results_AI2.png"
+                 class="center"
+                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+			 width="100%" height="auto"/>
+			 <p>More qualitative results of LD-ZNet from AIGI dataset.</p>
+			  </div>
+
+			</div>
+		  </div>
+		</div>
+		
+<!--
+         Re-rendering. 
+        <h3 class="title is-4">Re-rendering the input video</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+-->
+        <!--/ Re-rendering. -->
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@InProceedings{PNVR_2023_ICCV,
+    author    = {PNVR, Koutilya and Singh, Bharat and Ghosh, Pallabi and Siddiquie, Behjat and Jacobs, David},
+    title     = {LD-ZNet: A Latent Diffusion Approach for Text-Based Image Segmentation},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {4157-4168}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This websites utilizes source code from <a
+              href="https://github.com/nerfies/nerfies.github.io">here</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
