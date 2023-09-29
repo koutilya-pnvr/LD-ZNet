@@ -20,12 +20,12 @@ We present a technique for segmenting real and AI-generated images using latent 
 
 Next, we were mainly focused on understanding the generalization of text-based segmentation methods on AI-images because of the traction the AI-generated content gained in the past couple of years. Moreover, several editing workflows such as inpainting require precise segmentation of objects in the image. Thus it becomes important to understand the generalization ability of the computer vision systems to AI-content. Hence we create an AI-generated dataset named AIGI that contains 100 AI-generated images gathered from the <a href="https://lexica.art/" target="_blank" rel="noopener noreferrer">lexica.art website</a> and 214 object instances labeled along with their categorical captions as shown below. We also make this dataset public for future research in this direction.
 
-The AIGI dataset is made available at https://drive.google.com/drive/u/1/folders/1oZDJu5Y7nqN23Fcb6kCvXy1Do69l_YkQ.
+The AIGI dataset is made available here: <a href="https://drive.google.com/drive/u/1/folders/1oZDJu5Y7nqN23Fcb6kCvXy1Do69l_YkQ">Google Drive Link</a>.
 
  
 ## :sparkles: Pretrained Models
 
-The pretrained model for LD-ZNet can be found here: 
+The pretrained model for LD-ZNet can be found here: <a href="https://drive.google.com/file/d/17zH2jGRq8zbRGFnw2xw8q8iJ8aE0ZyZz/view?usp=sharing">Google Drive Link</a>.
 
 ## :eyes: LD-ZNet Demo in Automatic1111 stable-diffusion-webui
 
@@ -47,6 +47,10 @@ We integrate our LD-ZNet demo into automatic1111 GUI for the users to run the de
 </div>
 
 Given a generated image obtained from SD 2.1, we replace the "bucket" with a "closed wooden box" via the inpainting mechanism in the stable-diffusion-webui. For this, the first step is to segment the bucket via our LD-ZNet through the provided demo script in the img2img tab of the webui. The predicted mask from the LD-ZNet and the subsequent inpainting results replaced the bucket pixels with a "closed wooden box" are shown above.
+
+## License
+
+The model is licensed under the [Apache 2.0 license](LICENSE).
 
 ## :scroll: Citation
 If you find our [paper]([https://arxiv.org/abs/2303.12059](https://openaccess.thecvf.com/content/ICCV2023/papers/PNVR_LD-ZNet_A_Latent_Diffusion_Approach_for_Text-Based_Image_Segmentation_ICCV_2023_paper.pdf)) or this toolbox useful for your research, please cite our work.
