@@ -118,7 +118,7 @@
                 <a href="./assets/12703_poster.pdf"
                    class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                      <i class="fas fa-map"></i>
                   </span>
                   <span>Poster</span>
                 </a>
@@ -140,6 +140,15 @@
                       <i class="fab fa-youtube"></i>
                   </span>
                   <span>Video</span>
+                </a>
+              </span>
+			  <span class="link-block">
+                <a href="https://prezi.com/view/9n4as5i8FMjAREBvnaPb/"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
+                  <span class="icon">
+                      <i class="fab fa-slideshare"></i>
+                  </span>
+                  <span>Prezi Slides</span>
                 </a>
               </span>
               <!-- Code Link. -->
@@ -247,7 +256,7 @@
 		<figure class="is-centered">
 			<img src="./assets/Motivation_new1.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="Semantic information present in a pretrained LDM in coarsely segmenting novel categories"
 			 width="50%" height="auto"/>
 			<figcaption>Coarse segmentation results from an LDM for two distinct images, demonstrating the encoding of fine-grained object-level semantic information within the model’s internal features.</figcaption>
 		</figure>
@@ -258,7 +267,7 @@
 		<figure class="is-centered">
 			<img src="./assets/LDZNet-Summary.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="Proposed LD-ZNet architecture"
 			 width="100%" height="auto"/>
 			<figcaption>Overview of the proposed architecture</figcaption>
 		</figure>
@@ -277,7 +286,7 @@
 <!--			  <h2 class="title is-3">Visual Effects</h2>-->
 			  <img src="./assets/Results_Phrasecut.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="Qualitative comparision of LD-ZNet with previous works on the PhraseCut dataset"
 			 width="100%" height="auto"/>
 			</div>
 		  </div>
@@ -290,7 +299,7 @@
 			  <div class="column content has-text-centered">
 				<img src="./assets/Quantitative_Real.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="Quantitative comparision of LD-ZNet with previous works on the PhraseCut dataset"
 			 width="70%" height="auto"/>
 			  </div>
 
@@ -307,7 +316,7 @@
 		<figure class="is-centered">
 			<img src="./assets/AIGI_dataset.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="Examples from the AIGI dataset along with annotated labels of different objects and corresponding categorical captions"
 			 width="90%" height="auto"/>
 			<figcaption>Examples from the AIGI dataset with annotations. Images gathered from the <a href="https://lexica.art/" target="_blank" rel="noopener noreferrer">lexica.art</a> website</figcaption>
 		</figure>
@@ -321,7 +330,7 @@
 			  <h2 class="title is-3">Results on AIGI</h2>
 			  <img src="./assets/Results_AI.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="Qualitative comparision of LD-ZNet with previous works on the AIGI dataset"
 			 width="100%" height="auto"/>
 			</div>
 		  </div>
@@ -335,13 +344,13 @@
 			  <br><br><br><br>
 				<img src="./assets/Quantitative_AIGI.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="Quantitative comparision of LD-ZNet with previous works on the AIGI dataset"
 			 width="70%" height="auto"/>
 			 
 			 <br><br>
 				<img src="./assets/Results_AI2.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="LD-ZNet can segment various objects from AIGI"
 			 width="90%" height="auto"/>
 			  </div>
 
@@ -360,9 +369,9 @@
 <!--			  <h2 class="title is-3">More qualitative results of LD-ZNet</h2>-->
 			  <img src="./assets/Results_use_of_LDM_features.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="LD-ZNet can segment objects from animations, illustrations and celebrity images"
 			 width="100%" height="auto"/>
-			 <p>More qualitative examples where RGBNet fails to localize {``Guitar", ``Panda"} from animation images (top two rows), famous celebrities {``Scarlett Johansson", ``Kate Middleton"} (middle two rows) and objects such as {``Lamp", ``Trees"} from illustrations (bottom two rows). LD-ZNet benefits from using z combined with the internal LDM features to correctly segment these text prompts.</p>
+			 <p>More qualitative examples where RGBNet fails to localize {``Guitar", ``Panda"} from animation images (top two rows),&nbsp; &nbsp; objects such as {``Lamp", ``Trees"} from illustrations&nbsp;(middle two rows) and famous celebrities {``Scarlett Johansson", ``Kate Middleton"} (bottom two rows). LD-ZNet benefits from using z combined with the internal LDM features to correctly segment these text prompts.</p>
 			 </figure>
 			</div>
 		  </div>
@@ -377,13 +386,14 @@
 			 <h3 class="title is-4">Multi-object Segmentation</h3>
 				 <img src="./assets/Results_Multi_segmentation.jpg"
 					 class="center"
-					 alt="LD-ZNet can segment various objects on real and AI-generated images"
+					 alt="LD-ZNet has good understanding of the overall scene"
 				 width="100%" height="auto"/>
 				 <br><br><br>
 			 	<img src="./assets/Results_Multi_segmentation2.jpg"
                  class="center"
-                 alt="LD-ZNet can segment various objects on real and AI-generated images"
+                 alt="LD-ZNet has good understanding of the overall scene"
 			 width="100%" height="auto"/>
+			 <p>Multi-object segmentation on real and illustration images for various thing and stuff classes suggests LD-ZNet has a good understanding of the overall scene.</p>
 			  </div>
 
 			</div>
